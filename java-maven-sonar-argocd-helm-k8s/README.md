@@ -146,4 +146,21 @@ The speaker clarifies the difference between mvn clean package and mvn clean ins
 
 The pom.xml file is central to this process, as it defines all project dependencies. By using Maven, these dependencies are automatically fetched from the internet, removing the need to manually include large library files in the source code repository.
 
+#######
+The segment from (56:06 - 01:01:16) focuses on the static code analysis phase of the CI/CD pipeline and the subsequent Docker image management process.
+
+Static Code Analysis with SonarQube (56:06 - 58:48)
+The speaker explains that to integrate SonarQube into the Jenkins pipeline, the system must be provided with the SonarQube server's URL and an authentication token. This allows Jenkins to communicate effectively with the server and upload code quality reports.
+
+A key step involves executing the mvn sonar:sonar command as a specific Maven goal. The speaker highlights that while the command is straightforward, it requires the developer to be in the correct directory of the project where the application code resides.
+
+The configuration ensures that static code analysis is performed consistently, enabling the team to identify potential bugs, vulnerabilities, or code smells before proceeding with the deployment process.
+
+Docker Image Construction and Distribution (58:48 - 01:01:16)
+Following successful static analysis, the pipeline proceeds to build and push the Docker image. The speaker notes that the audience is expected to be familiar with standard Docker build and push procedures, so they focus on the operational necessity of providing Docker credentials within the Jenkins environment.
+
+These credentials are essential for authenticating with the Docker Hub registry, allowing the pipeline to securely upload the newly created container image.
+
+The speaker explains that once the image is pushed to the registry, it becomes available for the GitOps component (Argo CD) to pull and deploy, fulfilling the requirement for a fully automated, continuous delivery cycle. The segment concludes by mentioning the transition toward updating the Manifest repository, which serves as the final integration point before the application reaches the Kubernetes cluster.
+
 
