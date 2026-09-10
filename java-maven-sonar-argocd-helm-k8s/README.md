@@ -163,4 +163,21 @@ These credentials are essential for authenticating with the Docker Hub registry,
 
 The speaker explains that once the image is pushed to the registry, it becomes available for the GitOps component (Argo CD) to pull and deploy, fulfilling the requirement for a fully automated, continuous delivery cycle. The segment concludes by mentioning the transition toward updating the Manifest repository, which serves as the final integration point before the application reaches the Kubernetes cluster.
 
+####
+
+The segment from (01:01:16 - 01:09:40) focuses on finalizing the CI/CD pipeline configuration, specifically handling security credentials and verifying the readiness of the environment before triggering the end-to-end execution.
+
+Security Token Management (01:01:16 - 01:04:40)
+The speaker emphasizes the critical importance of security when generating and applying API tokens (such as a personal access token for GitHub or similar services).
+To prevent sensitive credentials from being exposed during the screen-sharing demonstration, the speaker temporarily pauses the display. This highlights a best practice for all DevOps engineers: never share authentication secrets or tokens in public environments or recordings.
+Once the token is generated, it is securely pasted into the Jenkins configuration dashboard to facilitate communication between Jenkins and the version control or infrastructure repositories.
+
+Pipeline Readiness and System Restart (01:04:40 - 01:06:50)
+After configuring the necessary credentials and plugins, the speaker performs a system restart of Jenkins. This is emphasized as a vital step, especially after installing multiple plugins and configuring new security secrets, as it ensures that the application environment is clean and all services are loaded with the latest configurations.
+The speaker notes that the browser will automatically reload once the Jenkins server becomes responsive again, indicating that the system is ready to process the pipeline.
+
+Environment Verification (01:06:50 - 01:09:40)
+With the environment back online, the speaker confirms the status of the Argo CD components. By running kubectl get pods -n operators, they verify that the Argo CD Operator is running, which is a prerequisite for the continuous delivery phase of the pipeline.
+The segment concludes with the speaker ready to trigger the build process for the application. They express confidence but also readiness to debug, reiterating that CI/CD pipelines rarely succeed on the first attempt and that debugging is a core skill for any DevOps professional.
+
 
