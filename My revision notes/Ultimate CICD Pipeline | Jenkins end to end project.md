@@ -49,7 +49,7 @@ Argo CD Role: Once the manifest repository is updated, Argo CD detects the chang
 
 The segment from (22:31) to (29:10) finalizes the explanation of the Continuous Delivery (CD) process and summarizes the end-to-end architecture. Here are the detailed notes:
 
-Summary of CD Workflow (22:30 - 24:00): The speaker reiterates that the CD process is designed to be simple. Once the CI pipeline pushes a new image to the registry, either Argo Image Updater or custom scripts detect the change.
+Summary of CD Workflow (22:30 - 24:00): The speaker reiterates that the CD process is designed to be simple. Once the CI pipeline pushes a new image to the registry, either Argo Image Updater or custom shell scripts which were written in pipeline detect the change.
 
 The Role of GitOps (24:01 - 25:17): The speaker emphasizes the power of GitOps tools like Argo CD. Because these controllers reside inside the Kubernetes cluster, they constantly compare the actual state of the cluster with the desired state defined in the Git repository. If a configuration, such as a volume mount or image tag, is updated in Git, Argo CD automatically synchronizes the cluster to match that new state.
 
