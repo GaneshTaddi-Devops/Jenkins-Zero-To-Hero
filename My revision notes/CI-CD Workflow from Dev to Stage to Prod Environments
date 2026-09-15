@@ -19,3 +19,28 @@ Once a fix is applied to the hotfix branch, the changes are merged back into all
 
 By leveraging this four-branch strategy, DevOps teams can manage complex development cycles, maintain stability, and ensure 
 that changes move safely from the initial development stage toward final production release.
+
+
+The segment from (13:11 - 19:03) outlines the practical application of CI/CD pipelines in promoting application code from development through
+to staging environments. 
+
+### **Code Promotion Workflow**
+
+*   **Feature Branch Pipeline (13:11 - 14:40):** When a developer commits code to a feature branch in the repository (e.g., a *payments application*), 
+a **webhook** triggers a specific Jenkins pipeline. This pipeline executes automated stages—such as code checkout, building, testing, and
+security scanning—and ultimately deploys the containerized image to a Kubernetes cluster dedicated to that development feature.
+
+*   **Main/Master Branch Pipeline (14:40 - 16:30):** Once the code from the feature branch is merged into the *Master* or *Main* branch,
+a different webhook triggers a separate Jenkins pipeline. This ensures that the code, which now includes integrated updates from
+the entire team, is deployed to a distinct **staging environment** (or staging Kubernetes cluster). Using separate clusters is highly 
+recommended over sharing resources via namespaces to ensure environment stability.
+
+*   **Quality Assurance and Staging (17:34 - 19:03):** The staging environment acts as the primary hub for testing.
+Once the CI/CD pipeline deploys the application here, the **QA team** performs rigorous verification.
+This includes:
+    *   **Automated Testing:** Functional and regression tests triggered by the Jenkins pipeline.
+    *   **Performance Testing:** Assessing system behavior under load.
+    *   **Security Testing:** Conducting penetration (pen) testing or checking for potential vulnerabilities (e.g., DDOS resilience).
+    
+By validating the integrated codebase in the staging environment, the team ensures that the application is reliable before proceeding to
+pre-production and final production releases.
