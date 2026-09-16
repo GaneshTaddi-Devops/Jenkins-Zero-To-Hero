@@ -52,12 +52,18 @@ using tools like **Argo CD**. This environment serves as the final testing groun
 to the **production environment** using the same release pipeline. 
 
 ### **Infrastructure and Environment Management**
-*   **Isolated Clusters (21:09 - 22:30):** It is considered best practice to maintain **separate Kubernetes clusters** for each environment (Development, Staging, Pre-production, and Production). 
-*   **Debugging Strategy (22:06 - 22:30):** Pre-production environments are crucial for reproducing and debugging production-level issues. If a failure occurs in production, it should be reproduced in pre-production rather than investigating directly in the production environment.
-*   **Advanced Testing Integration (23:07 - 24:17):** While development pipelines focus on basic builds and security scans, the **production/pre-production pipelines** are enhanced to include rigorous **performance testing** and **penetration (pen) testing**, which are too time-consuming to execute on every single code commit.
+*   **Isolated Clusters (21:09 - 22:30):** It is considered best practice to maintain **separate Kubernetes clusters** for each environment
+(Development, Staging, Pre-production, and Production). 
+*   **Debugging Strategy (22:06 - 22:30):** Pre-production environments are crucial for reproducing and debugging production-level issues.
+If a failure occurs in production, it should be reproduced in pre-production rather than investigating directly in the production environment.
+*   **Advanced Testing Integration (23:07 - 24:17):** While development pipelines focus on basic builds and security scans, the **production/pre-production 
+pipelines** are enhanced to include rigorous **performance testing** and **penetration (pen) testing**, which are too time-consuming to execute 
+on every single code commit.
 
 ### **Scaling the Workflow**
-*   **Multi-Branch Pipelines (24:17 - 26:34):** Instead of creating individual pipelines for every environment, organizations often use **Jenkins multi-branch pipelines**. Alternatively, a single **Argo CD** instance can manage deployments by watching specific folders (e.g., `dev`, `staging`, `prod`) within a Git repository that contain environment-specific **Helm charts**. This approach simplifies management while ensuring each environment remains directed toward its respective Kubernetes cluster.
+*   **Multi-Branch Pipelines (24:17 - 26:34):** Instead of creating individual pipelines for every environment, organizations often use **Jenkins multi-branch pipelines**. 
+Alternatively, a single **Argo CD** instance can manage deployments by watching specific folders (e.g., `dev`, `staging`, `prod`) within a Git repository that contain environment-specific **Helm charts**.
+This approach simplifies management while ensuring each environment remains directed toward its respective Kubernetes cluster.
     *   **Performance Testing:** Assessing system behavior under load.
     *   **Security Testing:** Conducting penetration (pen) testing or checking for potential vulnerabilities (e.g., DDOS resilience).
     
