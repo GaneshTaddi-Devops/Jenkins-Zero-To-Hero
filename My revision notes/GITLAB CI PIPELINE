@@ -62,3 +62,23 @@ the user is prompted to set a new, secure password (28:35 - 29:02).
 * **API Token:** To allow *GitLab* to communicate with *SonarQube* for code analysis, an **API Authentication Token** is
 generated in the *SonarQube* security settings (29:16 - 29:57).
 This token is critical for authenticating the CI pipeline's connection to the analysis server.
+
+The segment from (30:11 - 36:34) focuses on explaining the **CI process** and configuring the **GitLab CI pipeline** file (`.gitlab-ci.yml`).
+
+### **Key Concepts and Configurations:**
+
+*   **CI Configuration File:** Unlike *Jenkins* (which uses a *Jenkinsfile*) or *GitHub Actions* (which uses a `workflows` folder), 
+*GitLab* uses a dedicated file named **.gitlab-ci.yml** located at the root of the project (30:36).
+*   **Pipeline Stages:** The CI pipeline is broken down into multiple **stages** to modularize the workflow (34:14):
+    1.  **Build:** Uses *Maven* targets to create the Java artifact.
+    2.  **Test:** Verifies that code changes do not break existing unit tests.
+    3.  **SonarQube:** Performs static code analysis and pushes data to the *SonarQube* server.
+*   **Runner & Executor:** The speaker emphasizes using a **Docker image** as an executor to avoid re-installing *Maven* for every job. 
+He suggests creating a custom *Docker* image or re-tagging a public one (31:37, 32:04).
+*   **Sensitive Information (Secrets):** Sensitive data (such as *SonarQube* host URLs and API tokens) must be stored securely in **CI/CD variables** 
+within *GitLab* settings, rather than being hardcoded in the CI file (32:57, 33:04).
+*   **Environment Setup:** 
+    *   **Before Script:** Used to perform setup steps, such as switching to the directory where the source code resides, 
+ensuring the build tools run in the correct context (33:42).
+    *   **Commenting out CD:** The speaker notes that the deployment (CD) stage is intentionally commented out in this version,
+as it will be covered in a separate video (31:06, 36:18).
