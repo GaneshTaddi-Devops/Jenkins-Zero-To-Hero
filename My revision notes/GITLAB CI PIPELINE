@@ -35,3 +35,30 @@ concurrently.
     * **Outbound Traffic:** Rules must be configured to allow communication between the *EC2* instance and the *GitLab* server.
 * **Traffic Rules:** The presenter emphasizes defining specific ports rather than opening all traffic, though he opens all for the purpose of
 a quick demonstration.
+
+
+
+The segment from **19:31 to 30:10** focuses on preparing the *EC2 instance* to serve as a robust CI environment, specifically configuring it to run *Docker* and *SonarQube*.
+
+### **Docker Executor Implementation**
+* **Why Docker?** The presenter emphasizes that *Docker* executors are lightweight and efficient compared to virtual machine agents. 
+They prevent dependency conflicts when running multiple pipelines simultaneously on a single host (19:31 - 21:17).
+* **Installation:** After updating the package manager repositories, *Docker* is installed on the *Ubuntu* instance using `sudo apt install docker.io` (23:17 - 23:28).
+
+### **SonarQube Installation & Setup**
+* **Prerequisites:** The presenter notes a common pitfall: *SonarQube* requires *Java* to run. He performs the installation of *Java* on the *EC2*
+instance after initially encountering a startup error (26:26 - 26:55).
+* **User Configuration:** For security, a dedicated user named `sonar` is created to run the *SonarQube* service (25:09 - 25:28).
+* **Server Deployment:**
+    1. Download the *SonarQube* package using `wget` (25:29 - 25:38).
+    2. Extract the package using `unzip` (25:38 - 25:45).
+    3. Grant the `sonar` user appropriate permissions to the directory (25:48 - 25:55).
+    4. Start the server via the script `sonar.sh start` located in the `bin` directory (26:00 - 27:39).
+* **Verification:** The service status is checked to ensure it is running correctly on **Port 9000** (27:43 - 27:50).
+
+### **Authentication & Integration**
+* **Access:** After accessing the *SonarQube* dashboard at `http://<EC2-IP>:9000` using the default credentials (`admin/admin`), 
+the user is prompted to set a new, secure password (28:35 - 29:02).
+* **API Token:** To allow *GitLab* to communicate with *SonarQube* for code analysis, an **API Authentication Token** is
+generated in the *SonarQube* security settings (29:16 - 29:57).
+This token is critical for authenticating the CI pipeline's connection to the analysis server.
