@@ -82,3 +82,27 @@ within *GitLab* settings, rather than being hardcoded in the CI file (32:57, 33:
 ensuring the build tools run in the correct context (33:42).
     *   **Commenting out CD:** The speaker notes that the deployment (CD) stage is intentionally commented out in this version,
 as it will be covered in a separate video (31:06, 36:18).
+
+The final segment of the video (36:35 - 47:30) focuses on registering the *GitLab Runner* and executing the full CI pipeline to demonstrate the build, test, and quality analysis stages.
+
+### **GitLab Runner Configuration**
+* **Runner Setup:** To complete the infrastructure setup, the speaker accesses the *GitLab* settings under **CI/CD > Runners** and selects the **Show runner installation instructions** (37:04). 
+* **Registration Process:** 
+    * The speaker executes the provided commands on the *EC2 instance* to install the *GitLab Runner* service (37:15 - 37:45).
+    * During registration, the runner is configured specifically as a **Docker Runner** (38:11), and the *Docker image* used for the executor is set to the custom image that already includes *Maven* (38:16).
+
+### **Pipeline Execution & Troubleshooting**
+* **Execution:** Once the runner is active, the speaker triggers the pipeline. Because the deployment (CD) stage was intentionally commented out, 
+the pipeline executes three stages: **Build**, **Test**, and **SonarQube** (39:43).
+* **Error Handling:** The initial pipeline run fails during the *SonarQube* stage because the *SonarQube* host URL in the `.gitlab-ci.yml` file was outdated (42:18).
+* **Resolution:** 
+    * The speaker updates the *SonarQube API token* in the *GitLab CI/CD variables* (42:52).
+    * The speaker manually updates the *Sonar Host URL* in the `.gitlab-ci.yml` file (43:24).
+    * After committing these changes, the pipeline restarts automatically and succeeds (43:57).
+
+### **Final Verification**
+* **Dashboard Validation:** Upon successful pipeline completion, the speaker navigates to the *SonarQube* dashboard via the link provided in the *Code Quality* job logs (45:57).
+* **Quality Gate:** The dashboard confirms that the quality gates passed, showing **zero bugs** and **zero vulnerabilities** for the simple *Spring Boot* application (46:06).
+* **Concluding Thoughts:** The speaker emphasizes that this setup provides a robust foundation for *DevOps* projects and encourages viewers to leverage the *CI/CD* knowledge to build 
+their own pipelines, inviting feedback on whether
+to create a follow-up video for the *ArgoCD* deployment (CD) stage (46:47).
