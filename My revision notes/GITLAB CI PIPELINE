@@ -1,0 +1,37 @@
+This video is an **end-to-end CI setup using GitLab**, focusing on a Java-based *Spring Boot* microservice application. 
+Below are the detailed notes covering the initial setup, architecture, and configuration discussed between (0:01 - 19:30).
+
+### **Project Overview & Objectives (0:01 - 4:50)**
+* **Scope:** The video focuses on a **CI pipeline** for a Java application. It uses *GitLab* for source control and CI, with plans
+to cover *Argo CD* deployment in a follow-up video.
+* **Technology Stack:** 
+    * **Application:** *Spring Boot* microservice.
+    * **Build Tool:** *Maven*.
+    * **Code Analysis:** *SonarQube*.
+    * **Infrastructure:** *AWS EC2* instance acting as a self-hosted runner.
+    * **Execution:** *Docker* executor.
+* **Workflow:** The pipeline includes stages for code checkout, building the *JAR* file via *Maven*, running unit tests, 
+and performing static code analysis with *SonarQube*.
+
+### **GitLab Setup & Project Initialization (6:09 - 11:53)**
+* **Account Creation:** Users can sign up for *GitLab.com* directly or use *GitHub/Google* authentication for faster access.
+* **Java Application:** The project is a simple *Spring Boot* app that outputs a static message. 
+It can be forked directly from the creator’s repository.
+* **Microservice Concept:** The presenter explains that microservices are lightweight and independently managed,
+allowing for specific CI/CD pipelines per service without cross-dependency issues.
+
+### **Runner Configuration (12:08 - 14:47)**
+* **Types of Runners:**
+    * **Shared Runners:** Hosted by *GitLab*. Convenient for public/open-source projects but less suitable for private enterprise code.
+    * **Project Runners (Self-Hosted):** Recommended for organizations, as they provide better control and security.
+The tutorial focuses on this method.
+
+### **Infrastructure Setup: AWS EC2 (14:47 - 19:30)**
+* **Instance Selection:** A **T2 Medium** instance is required, as a T2 Micro lacks the resources to run *Docker*, *SonarQube*, and the *GitLab Runner* 
+concurrently.
+* **Security Group Configuration:**
+    * **Port 9000:** Necessary for *SonarQube* access.
+    * **HTTP/HTTPS (Port 80/443):** Required for general traffic.
+    * **Outbound Traffic:** Rules must be configured to allow communication between the *EC2* instance and the *GitLab* server.
+* **Traffic Rules:** The presenter emphasizes defining specific ports rather than opening all traffic, though he opens all for the purpose of
+a quick demonstration.
